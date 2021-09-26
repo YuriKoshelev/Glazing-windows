@@ -1,6 +1,13 @@
 const forms = () => {
     const form = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input');
+          inputs = document.querySelectorAll('input'),
+          phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+
+    phoneInputs.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/\D/, '');
+        });
+    });
 
     const message = {
         loading: 'Загрузка...',
@@ -34,33 +41,24 @@ const forms = () => {
             statusMessage.classList.add('status');
             item.appendChild(statusMessage);
 
+            formData = new FormData(item);                                
             if (e.target.getAttribute('class') == 'form popup_calc_end_submit') {
                 let profile=''; 
                 if (document.querySelectorAll('.checkbox')[0].checked) {profile='cold';}
-                if (document.querySelectorAll('.checkbox')[1].checked) {profile='warm';}
-                const calcData = {
-                    typebalcony: document.querySelector('.popup_calc .big_img [style="display: block; margin: 0px auto;"]').getAttribute('alt'),
-                    width: document.querySelector('#width').value,
-                    height: document.querySelector('#height').value,
-                    typeglazing: document.querySelector('.popup_calc_profile .form-control').value,
-                    profile: profile,
-                    username: document.querySelector('.popup_calc_end [name="user_name"]').value,
-                    userphone: document.querySelector('.popup_calc_end [name="user_phone"]').value
-                };
-                formData = JSON.stringify(calcData);
+                else if (document.querySelectorAll('.checkbox')[1].checked) {profile='warm';}
+                formData.append('type', document.querySelector('.popup_calc .big_img [style="display: inline-block;"]').getAttribute('alt'));
+                formData.append('width', document.querySelector('#width').value);
+                formData.append('height', document.querySelector('#height').value);
+                formData.append('typeGlazing', document.querySelector('.popup_calc_profile .form-control').value);
+                formData.append('profile', profile);
             }
-            else {
-                formData = new FormData(item);
-                const object = {};                                
-                formData.forEach(function(value, key) {
-                    object[key] = value;                          
-                }); 
-                formData = JSON.stringify(object);
-            }
+            
+            const obj = {};                                
+            formData.forEach((value, key) => {obj[key] = value;}); 
+            formData = JSON.stringify(obj);
 
             postData('assets/server.php', formData)
                 .then(res => {
-                    console.log(res);
                     statusMessage.textContent = message.success;
                 })
                 .catch(() => statusMessage.textContent = message.failure)
@@ -68,11 +66,7 @@ const forms = () => {
                     clearInputs();
                     setTimeout(() => {
                         statusMessage.remove();
-                        if (e.target.getAttribute('class') == 'form popup_calc_end_submit') {
                         document.querySelector('.popup_calc_end').style.display = 'none';
-                        document.querySelector('.popup_calc_profile').style.display = 'none';
-                        document.querySelector('.popup_calc').style.display = 'none';
-                        }
                     }, 5000);
                 });
         });

@@ -14,7 +14,6 @@ function timer(deadline) {
         'hours': hours,
         'minutes': minutes,
         'seconds': seconds
-
         };      
     }
 

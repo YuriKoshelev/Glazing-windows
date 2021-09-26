@@ -9,13 +9,12 @@ const modals = () => {
                 if (e.target) {
                     e.preventDefault();
                 }
-                console.log(e);
+                closeModal();
                 showModal(modal);
                 //document.body.classList.add('modal-open');
             });
         });
         
-
         close.addEventListener('click', () => {
             closeModal();
         });
@@ -29,9 +28,11 @@ const modals = () => {
         function closeModal() {
           modal.style.display = 'none';
           document.body.overflow = '';
+          document.querySelector('.popup_calc_end').style.display = 'none';
+          document.querySelector('.popup_calc_profile').style.display = 'none';
+          document.querySelector('.popup_calc').style.display = 'none';
           //document.body.classList.remove('modal-open'); 
         }
-
     }
 
     function showModal(modal) {
@@ -42,8 +43,8 @@ const modals = () => {
 
     function showModalByTime(selector, time) {
         const id = setTimeout(function() {
-                            showModal(selector);
-                          }, time);
+                    showModal(selector);
+                    }, time);
         return id;                  
     }
 

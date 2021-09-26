@@ -1,55 +1,55 @@
-const tabs = () => {
-    let ActivTab=document.querySelector('.decoration .decoration_slider .after_click');
-    let ActivDecoration=document.querySelector('.decoration_content0');
-    const decoration=document.querySelectorAll('.decoration .decoration_slider .no_click');
-
-    let ActivGlazingTab=document.querySelector('.glazing .slick-current');
-    let ActivGlazingContent=document.querySelector('.glazing_cont0'); 
-    const glazing=document.querySelectorAll('.glazing .slick-active');
+const tabs = (tabsSettings) => {
     
-    function showTab(tabSelector, activeTab, activClass, typeTab) {
-        document.querySelector(tabSelector).style.display = 'block';
-        if (typeTab === 'decoration'){ActivTab=activeTab; ActivDecoration=document.querySelector(tabSelector);}
-        if (typeTab === 'glazing'){ActivGlazingTab=activeTab; ActivGlazingContent=document.querySelector(tabSelector);}
-        activeTab.classList.add(activClass);
+    let indexdecorationTab=0, indexdecorationContent=0;
+    const decorationTab=tabsSettings.decorationTab;
+    const decorationContent=tabsSettings.decorationContent;
+
+    let indexGlazingTab=0, indexGlazingContent=0; 
+    const glazingTab=tabsSettings.glazingTab;
+    const glazingContent=tabsSettings.glazingContent;
+    
+    let indexModalTab=0, indexModalContent=0; 
+    const modalTab=tabsSettings.modalTab;
+    const modalContent=tabsSettings.modalContent;
+
+    function showTab(Content, Tab, activClass, display='block') {
+        Tab.classList.add(activClass);
+        Content.style.display = display;
     }
 
-    function hideTab(oldTabSelector, oldActiveTab, activClass, typeTab) {
-        oldActiveTab.classList.remove(activClass);
-        oldTabSelector.style.display = 'none';
+    function hideTab(Content, indContent, Tab, indTab, activClass) {
+        Tab[indTab].classList.remove(activClass);
+        Content[indContent].style.display = 'none';
     }
 
     function clickTab() {
-        decoration.forEach((elem, i ) => { 
-            elem.addEventListener('click', (e)=> {
-                let el=e.target;
-                if (!(el.classList.contains('no_click'))){el=el.parentElement;}
-                hideTab(ActivDecoration, ActivTab, 'after_click', '');
-                showTab(`.decoration_content${i}`, el, 'after_click', 'decoration'); 
+        decorationTab.forEach((elem, i) => { 
+            elem.addEventListener('click', ()=> {
+                hideTab(decorationContent, indexdecorationContent, decorationTab, indexdecorationTab, 'after_click')
+                showTab(decorationContent[i], decorationTab[i], 'after_click');
+                indexdecorationContent=i; indexdecorationTab=i; 
             });
         });
 
-        glazing.forEach((elem, i) => {
-            elem.addEventListener('click', (e)=> {
-                hideTab(ActivGlazingContent, ActivGlazingTab, '_', '');
-                showTab(`.glazing_cont${i}`, e.target, '_' ,'glazing'); 
+        glazingTab.forEach((elem, i) => {
+            elem.addEventListener('click', ()=> {
+                hideTab(glazingContent, indexGlazingContent, glazingTab, indexGlazingTab, 'slick-current');
+                showTab(glazingContent[i], glazingTab[i], 'slick-current');
+                indexGlazingContent=i; indexGlazingTab=i;
             });
         });           
 
-        const windowsTab = document.querySelectorAll('.balcon_icons_img');
-        windowsTab.forEach((elem, i) => {
-            elem.addEventListener('click', (e)=> {
-                let t = document.querySelector('.big_img.text-center img[style="display: block; margin: 0px auto;"]');
-                if (t) {t.style.display = 'none';}
-                document.querySelector('.balcon_icons_img.do_image_more').classList.remove('do_image_more');
-                showTab(`.big_img.text-center [alt="Тип${i+1}"]`, e.target.parentElement, 'do_image_more' ,'');
-                document.querySelector(`.big_img.text-center [alt="Тип${i+1}"]`).style.margin = '0 auto'; 
+        modalTab.forEach((elem, i) => {
+            elem.addEventListener('click', ()=> {
+                hideTab(modalContent, indexModalContent, modalTab, indexModalTab, 'do_image_more');
+                showTab(modalContent[i], modalTab[i], 'do_image_more', 'inline-block'); 
+                indexModalContent=i; indexModalTab=i;
             });
         });
     }
 
-    document.querySelector(`.big_img.text-center [alt="Тип1"]`).style.display = 'block';
-    document.querySelector(`.big_img.text-center [alt="Тип1"]`).style.margin = '0 auto';
+    modalContent[0].style.display = 'inline-block';
+    glazingContent[0].style.display = 'block';
 
     clickTab();
 };
