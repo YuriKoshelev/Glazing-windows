@@ -43,7 +43,7 @@ const forms = () => {
 
             formData = new FormData(item);                                
             if (e.target.getAttribute('class') == 'form popup_calc_end_submit') {
-                let profile=''; 
+                let profile='';  
                 if (document.querySelectorAll('.checkbox')[0].checked) {profile='cold';}
                 else if (document.querySelectorAll('.checkbox')[1].checked) {profile='warm';}
                 formData.append('type', document.querySelector('.popup_calc .big_img [style="display: inline-block;"]').getAttribute('alt'));
@@ -56,10 +56,10 @@ const forms = () => {
             const obj = {};                                
             formData.forEach((value, key) => {obj[key] = value;}); 
             formData = JSON.stringify(obj);
-
             postData('assets/server.php', formData)
                 .then(res => {
                     statusMessage.textContent = message.success;
+                    console.log(res);
                 })
                 .catch(() => statusMessage.textContent = message.failure)
                 .finally(() => {
@@ -67,6 +67,10 @@ const forms = () => {
                     setTimeout(() => {
                         statusMessage.remove();
                         document.querySelector('.popup_calc_end').style.display = 'none';
+                        document.querySelector('.popup_engineer').style.display = 'none';
+                        document.querySelectorAll('.popup')[1].style.display = 'none';
+                        document.body.style.overflow = '';
+                        document.body.style.marginRight = '0px';
                     }, 5000);
                 });
         });

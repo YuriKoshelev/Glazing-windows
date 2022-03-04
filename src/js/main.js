@@ -9,7 +9,7 @@ import images from './modules/images';
 window.addEventListener('load', () => {    
     'use strict';
     modals();
-    
+
     const tabsSettings = {
         decorationTab: document.querySelectorAll('.decoration .decoration_slider .no_click'),
         decorationContent: document.querySelector('.decoration_content .row').children,
@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
 
     tabs(tabsSettings);
     forms();
-    calc();
-    timer('2021-12-18');
+    calc('.popup_calc .form-control');
+    timer('2022-06-18');
     images();
 });

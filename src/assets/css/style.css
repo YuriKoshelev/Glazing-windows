@@ -1819,12 +1819,12 @@ textarea:focus {
   }
 }
 
-.fade{
-  animation-name: fade;
+.faded{
+  animation-name: faded;
   animation-duration: 1.5s;
 }
 
-@keyframes fade{
+@keyframes faded{
     from{
         opacity: 0.1;
     }

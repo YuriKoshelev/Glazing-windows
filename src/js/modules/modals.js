@@ -1,9 +1,22 @@
+function calcScroll() {
+    let div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+
+    document.body.appendChild(div);
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
+}
+
 const modals = () => {
     function btndMadal(triggerSelector, modalSelector, closeSelector) {
         const trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector);
-
+        
         trigger.forEach(item => {
             item.addEventListener('click', (e) => {
                 if (e.target) {
@@ -27,7 +40,8 @@ const modals = () => {
 
         function closeModal() {
           modal.style.display = 'none';
-          document.body.overflow = '';
+          document.body.style.overflow = '';
+          document.body.style.marginRight = '0px';
           document.querySelector('.popup_calc_end').style.display = 'none';
           document.querySelector('.popup_calc_profile').style.display = 'none';
           document.querySelector('.popup_calc').style.display = 'none';
@@ -37,7 +51,8 @@ const modals = () => {
 
     function showModal(modal) {
         modal.style.display = 'block';
-        document.body.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        document.body.style.marginRight = `${calcScroll()}px`;
         clearInterval(idTimeout);
     }
 
@@ -69,3 +84,4 @@ const modals = () => {
 };
 
 export default modals;
+export {calcScroll};
