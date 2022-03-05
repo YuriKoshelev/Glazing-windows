@@ -1,3 +1,24 @@
+Link to the website: http://glazing.ykoshelev.ru/
+
+### Real JavaScript project in classic style
+
+### What is the project about
+Adding interactive content to a site using native JavaScript
+
+### Tasks
+- When you click on the buttons, a modal window should be called, when you click on a cross or a substrate, it should disappear.
+- When clicking on the inscription: "Заказать обратный звонок" and "Спросите у нашего специалиста” the modal window should also be called.
+- There is a form inside all modal window, it should be sent via ajax (without reloading the page). It is also necessary to notify the user about the status of sending (sending is underway, sent, error). You can only enter numbers in the phone field.
+- Implement tabs.
+- Inside all tabs there are buttons "Рассчитать стоимость”, when you click on them, a modal calculation window should appear, when you click on small tabs, this picture becomes slightly larger, an analog of the active preview is shown below them. When you click on the "Next" button, this modal window is hidden and a modal window appears with a choice of the type of glazing. In the next window, implement sending to the server all the selected and entered data by the user.
+- Timer implementation.
+- To implement the interactivity of the "Наши работы" section, namely, when clicking on any of the eight images, it should open to the full screen with a translucent, dark background.
+- If the user is on the page for more than 60 seconds, a modal window should appear
+- The modular structure of the project is necessary, the assembly (bundle) must be connected.
+- No code duplication.
+
+
+
 Ссылка на сайт: http://glazing.ykoshelev.ru/
 
 ### Реальный проект на JavaScript в классическом стиле
@@ -26,26 +47,6 @@
 
 
 
-Link to the website: http://glazing.ykoshelev.ru/
-
-### Real JavaScript project in classic style
-
-### What is the project about
-Adding interactive content to a site using native JavaScript
-
-### Tasks
-- When you click on the buttons, a modal window should be called, when you click on a cross or a substrate, it should disappear.
-- When clicking on the inscription: "Заказать обратный звонок" and "Спросите у нашего специалиста” the modal window should also be called.
-- There is a form inside all modal window, it should be sent via ajax (without reloading the page). It is also necessary to notify the user about the status of sending (sending is underway, sent, error). You can only enter numbers in the phone field.
-- Implement tabs.
-- Inside all tabs there are buttons "Рассчитать стоимость”, when you click on them, a modal calculation window should appear, when you click on small tabs, this picture becomes slightly larger, an analog of the active preview is shown below them. When you click on the "Next" button, this modal window is hidden and a modal window appears with a choice of the type of glazing. In the next window, implement sending to the server all the selected and entered data by the user.
-- Timer implementation.
-- To implement the interactivity of the "Наши работы" section, namely, when clicking on any of the eight images, it should open to the full screen with a translucent, dark background.
-- If the user is on the page for more than 60 seconds, a modal window should appear
-- The modular structure of the project is necessary, the assembly (bundle) must be connected.
-- No code duplication.
-
-
-### Демонстрация / Demonstration
+### Demonstration / Демонстрация
 
 [![Watch the video](desktop.png)](https://youtu.be/dvnTZmb5xW4)
